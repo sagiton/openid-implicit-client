@@ -170,6 +170,7 @@ OIDC.supportedProviderOptions = [
  * @property {array} OIDC.supportedRequestOptions.claims.id_token    - list of claims to return in the ID Token
  * @property {array} OIDC.supportedRequestOptions.claims.userinfo    - list of claims to return in the UserInfo endpoint
  * @property {boolean} OIDC.supportedRequestOptions.request   - signed request object JWS. Not supported yet.
+ * @property {string} OIDC.supportedRequestOptions.acr_values   - Authentication Context Class Values
  * @readonly
  * @memberof OIDC
  *
@@ -180,7 +181,8 @@ OIDC.supportedRequestOptions = [
     'display',
     'max_age',
     'claims',
-    'request'
+    'request',
+    'acr_values'
 ];
 
 /**
@@ -541,6 +543,9 @@ OIDC.generateLoginRequest = function(reqOptions) {
         optParams += '&max_age=' + max_age;
         if(claims)
         optParams += '&claims=' + JSON.stringify(claims);
+        if(reqOptions['acr_values']) {
+            optParams += '&acr_values=' + reqOptions['acr_values'];
+        }
 
         var url =
         this['authorization_endpoint']
@@ -703,6 +708,9 @@ OIDC.login = function(reqOptions) {
     optParams += '&max_age=' + max_age;
     if(claims)
     optParams += '&claims=' + JSON.stringify(claims);
+    if(reqOptions['acr_values']) {
+      optParams += '&acr_values=' + reqOptions['acr_values'];
+    }
 
     var url =
     this['authorization_endpoint']

@@ -43,6 +43,7 @@ Supported Login Request parameters. <br>
 * **supportedRequestOptions.claims.id_token** *(array)*: List of claims to return in the ID Token<br>
 * **supportedRequestOptions.claims.userinfo** *(array)*: List of claims to return in the UserInfo endpoint<br>
 * **supportedRequestOptions.request** *(boolean)*: Signed request object JWS. **Not supported yet.**<br>
+* **supportedRequestOptions.acr_values** *(string)*: Authentication Context Class Values<br>
 
 #### Supported Client Options
 
